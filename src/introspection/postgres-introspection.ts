@@ -168,6 +168,7 @@ export class PostgresIntrospection extends Introspection {
                     'column_name',
                     'udt_name',
                     'is_nullable',
+                    'is_generated',
                     'character_maximum_length',
                     'column_default',
                 )

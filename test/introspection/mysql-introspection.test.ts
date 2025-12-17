@@ -52,7 +52,7 @@ describeif(DB() === 'mysql')('MySQLIntrospection', () => {
         it('Loads all columns for a table', async (): Promise<void> => {
             const enums = await intro.getEnumTypesForTables(['users', 'teams']);
             const { users } = await intro.getTableTypes(['users', 'teams'], enums);
-            expect(Object.keys(users)).toHaveLength(10);
+            expect(Object.keys(users)).toHaveLength(11);
         });
         it('Maps types correctly from db to typescript including enums', async (): Promise<void> => {
             const enums = await intro.getEnumTypesForTables(['users', 'teams']);
@@ -83,6 +83,15 @@ describeif(DB() === 'mysql')('MySQLIntrospection', () => {
                 tsType: 'string',
                 columnName: 'first_name',
                 columnDefault: null,
+                characterMaximumLength: null,
+            });
+            expect(types['full_name']).toEqual({
+                dbType: 'varchar',
+                nullable: true,
+                generated: true,
+                tsType: 'string',
+                columnName: 'full_name',
+                columnDefault: 'STORED GENERATED', // this is the 'extra' value
                 characterMaximumLength: null,
             });
             expect(types['permissions']).toEqual({
