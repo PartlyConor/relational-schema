@@ -57,6 +57,7 @@ describeif(DB() === 'pg')('PostgresIntrospection', () => {
             expect(types['user_id']).toEqual({
                 dbType: 'int4',
                 nullable: false,
+                generated: false,
                 tsType: 'number',
                 columnName: 'user_id',
                 columnDefault: `nextval('users_user_id_seq'::regclass)`,
@@ -65,6 +66,7 @@ describeif(DB() === 'pg')('PostgresIntrospection', () => {
             expect(types['email']).toEqual({
                 dbType: 'varchar',
                 nullable: false,
+                generated: false,
                 tsType: 'string',
                 columnName: 'email',
                 columnDefault: null,
@@ -73,6 +75,7 @@ describeif(DB() === 'pg')('PostgresIntrospection', () => {
             expect(types['first_name']).toEqual({
                 dbType: 'varchar',
                 nullable: true,
+                generated: false,
                 tsType: 'string',
                 columnName: 'first_name',
                 columnDefault: null,
@@ -81,6 +84,7 @@ describeif(DB() === 'pg')('PostgresIntrospection', () => {
             expect(types['permissions']).toEqual({
                 dbType: 'permissions',
                 nullable: true,
+                generated: false,
                 tsType: 'permissions',
                 columnName: 'permissions',
                 columnDefault: `'USER'::permissions`,
@@ -89,6 +93,7 @@ describeif(DB() === 'pg')('PostgresIntrospection', () => {
             expect(types['deleted_at']).toEqual({
                 dbType: 'timestamptz',
                 nullable: true,
+                generated: false,
                 tsType: 'Date',
                 columnName: 'deleted_at',
                 columnDefault: null,
