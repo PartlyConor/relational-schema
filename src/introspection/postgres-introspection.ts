@@ -156,6 +156,7 @@ export class PostgresIntrospection extends Introspection {
             column_name: string;
             udt_name: string;
             is_nullable: string;
+            is_generated: string;
             column_default: string | null;
             character_maximum_length: number | null;
         };
@@ -186,6 +187,7 @@ export class PostgresIntrospection extends Introspection {
                     dbType,
                     columnDefault: schemaItem.column_default,
                     nullable: schemaItem.is_nullable === 'YES',
+                    generated: schemaItem.is_generated === 'ALWAYS',
                     characterMaximumLength: schemaItem.character_maximum_length,
                     columnName,
                     tsType: this.getTsTypeForColumn(table, columnName, dbType, enumTypes[table]),
